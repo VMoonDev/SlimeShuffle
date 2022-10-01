@@ -49,5 +49,8 @@ position = Vector2( 34, 482 )
 wait_time = 10.0
 autostart = true
 
-[node name="Node2D" parent="." instance=ExtResource( 4 )]
-position = Vector2( 283, 473 )
+[node name="JumpPowerUp" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1802, 459 )
+
+[node name="JumpPowerUp2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1156, -446 )

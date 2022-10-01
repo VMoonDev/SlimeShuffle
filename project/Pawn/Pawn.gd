@@ -8,7 +8,7 @@ const _SLIDESPEED := 50
 var _velocity := Vector2.ZERO
 var _is_jumping := false
 var _wall_jumped := 0
-var _wall_jump_max := 2
+var wall_jump_max := 2 setget wall_jump_max_set
 
 func _physics_process(delta):
 	_gravity(delta)
@@ -24,7 +24,7 @@ func _movement():
 	if Input.is_action_just_pressed("jump") and _is_jumping == false:
 		_is_jumping = true
 		_velocity.y = -_JUMPSTRENGTH
-	if Input.is_action_just_pressed("jump") and is_on_wall() and _wall_jumped < _wall_jump_max:
+	if Input.is_action_just_pressed("jump") and is_on_wall() and _wall_jumped < wall_jump_max:
 		_wall_jumped += 1
 		_velocity.y = -_JUMPSTRENGTH
 	_velocity = move_and_slide(_velocity, Vector2.UP)
@@ -37,10 +37,15 @@ func _gravity(delta):
 		_velocity.y += _SLIDESPEED * delta
 	else:
 		_velocity.y += _GRAVITY * delta
+
 		
 func _attack():
 	if Input.is_action_just_pressed("attack"):
 		_velocity.x *= 2
 		
+func wall_jump_max_set(new_value):
+	wall_jump_max = new_value
+	
+		
 func _power_up():
-	_wall_jump_max = 20
+	wall_jump_max = 20
