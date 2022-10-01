@@ -6,7 +6,7 @@ const _JUMPSTRENGTH := 450
 const _SLIDESPEED := 50
 
 var _velocity := Vector2.ZERO
-var _wall_jumped := false
+var _wall_jumped := 0
 
 func _physics_process(delta):
 	_gravity(delta)
@@ -15,12 +15,12 @@ func _physics_process(delta):
 
 func _movement():
 	if is_on_floor():
-		_wall_jumped = false
+		_wall_jumped = 0
 	_velocity.x = Input.get_axis("move_left", "move_right") * _MOVESPEED
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		_velocity.y = -_JUMPSTRENGTH
-	if Input.is_action_just_pressed("jump") and is_on_wall() and _wall_jumped == false:
-		_wall_jumped = true
+	if Input.is_action_just_pressed("jump") and is_on_wall() and _wall_jumped < 2:
+		_wall_jumped += 1
 		_velocity.y = -_JUMPSTRENGTH
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 
