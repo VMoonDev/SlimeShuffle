@@ -3,12 +3,19 @@ extends KinematicBody2D
 const _GRAVITY := 800
 const _MOVESPEED := 400
 const _JUMPSTRENGTH := 450
+const _SLIDESPEED := 50
 
 var _velocity := Vector2.ZERO
 var _wall_jumped := false
 
 func _physics_process(delta):
-	_velocity.y = 0 if is_on_floor() else _velocity.y + _GRAVITY * delta
+	##_velocity.y = 0 if is_on_floor() else _velocity.y + _GRAVITY * delta
+	if is_on_floor():
+		_velocity.y = 0
+	elif is_on_wall() and _velocity.y > 0:
+		_velocity.y += _SLIDESPEED * delta
+	else:
+		_velocity.y += _GRAVITY * delta
 	_movement()
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 
