@@ -6,18 +6,22 @@ const _JUMPSTRENGTH := 450
 const _SLIDESPEED := 50
 
 var _velocity := Vector2.ZERO
+var _is_jumping := false
 var _wall_jumped := 0
 
 func _physics_process(delta):
 	_gravity(delta)
+	_attack()
 	_movement()
 
 
 func _movement():
-	if is_on_floor():
-		_wall_jumped = 0
 	_velocity.x = Input.get_axis("move_left", "move_right") * _MOVESPEED
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if is_on_floor():
+		_is_jumping = false
+		_wall_jumped = 0
+	if Input.is_action_just_pressed("jump") and _is_jumping == false:
+		_is_jumping = true
 		_velocity.y = -_JUMPSTRENGTH
 	if Input.is_action_just_pressed("jump") and is_on_wall() and _wall_jumped < 2:
 		_wall_jumped += 1
@@ -32,3 +36,8 @@ func _gravity(delta):
 		_velocity.y += _SLIDESPEED * delta
 	else:
 		_velocity.y += _GRAVITY * delta
+		
+func _attack():
+	if Input.is_action_just_pressed("attack"):
+		_velocity.x *= 2
+		move_and_slide(_velocity, Vector2.UP)
