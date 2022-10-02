@@ -12,7 +12,7 @@ func _on_GameTimer_timeout():
 	_set_game()
 
 func _set_game():
-	for level in [1, _max_levels, 1]:
+	for level in [1, _max_levels]:
 		if level == _current_level:
 			get_node("Level" + str(_current_level)).visible = true
 			get_node("Level" + str(_current_level)).pause_mode = Node.PAUSE_MODE_PROCESS
