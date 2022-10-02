@@ -48,7 +48,7 @@ func _jump():
 		_velocity.y = -_JUMPSTRENGTH
 	if is_on_wall() and _wall_jumped == wall_jump_max:
 		_wall_jumped += 1
-		_velocity.y = -_SCRAMBLESTRENGTH
+		$scrambleSFX.play()
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 
 

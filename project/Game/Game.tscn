@@ -8,10 +8,8 @@
 script = ExtResource( 3 )
 
 [node name="Level1" parent="." instance=ExtResource( 1 )]
-pause_mode = 2
 
 [node name="Level2" parent="." instance=ExtResource( 2 )]
-visible = false
 
 [node name="GameTimer" type="Timer" parent="."]
 pause_mode = 2

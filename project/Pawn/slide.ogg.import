@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/slide.ogg-fdcb6feec2a266603f6f0489c74ac41f.oggstr"
+
+[deps]
+
+source_file="res://Pawn/slide.ogg"
+dest_files=[ "res://.import/slide.ogg-fdcb6feec2a266603f6f0489c74ac41f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
