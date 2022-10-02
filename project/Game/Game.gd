@@ -1,5 +1,7 @@
 extends Node2D
 
+signal time_changed(current_time)
+
 var _current_level := 1
 var _max_levels := 2
 
@@ -23,3 +25,7 @@ func _set_game():
 			get_node("Level" + str(level)).visible = false
 			get_node("Level" + str(level)).pause_mode = Node.PAUSE_MODE_STOP
 			get_node("Level" + str(level) + "/Pawn/Camera2D").current = false
+
+
+func _on_Counter_timeout():
+	emit_signal("time_changed", $GameTimer.time_left)
