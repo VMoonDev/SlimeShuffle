@@ -3,14 +3,14 @@ extends KinematicBody2D
 const _GRAVITY := 800
 const _MOVESPEED := 400
 const _JUMPSTRENGTH := 450
-const _SCRAMBLESTRENGTH := 100
+const _SCRAMBLESTRENGTH := 300
 const _SLIDESPEED := 50
 
 var _velocity := Vector2.ZERO
 var _is_jumping := false
 var _is_attacking := false
 var _wall_jumped := 0
-var wall_jump_max := 2 setget wall_jump_max_set
+var wall_jump_max := 3 setget wall_jump_max_set
 
 func _physics_process(delta):
 	_gravity(delta)
@@ -41,7 +41,10 @@ func _jump():
 		_velocity.y = -_JUMPSTRENGTH
 	if is_on_wall() and _wall_jumped < wall_jump_max:
 		_wall_jumped += 1
-		_velocity.y = -_JUMPSTRENGTH	
+		_velocity.y = -_JUMPSTRENGTH
+	if is_on_wall() and _wall_jumped == wall_jump_max:
+		_wall_jumped += 1
+		_velocity.y = -_SCRAMBLESTRENGTH
 	_velocity = move_and_slide(_velocity, Vector2.UP)	
 
 		
