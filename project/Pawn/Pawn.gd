@@ -4,13 +4,13 @@ const _GRAVITY := 800
 const _MOVESPEED := 400
 const _JUMPSTRENGTH := 450
 const _SCRAMBLESTRENGTH := 300
-const _SLIDESPEED := 50
+const _SLIDESPEED := 200
 
 var _velocity := Vector2.ZERO
 var _is_jumping := false
-var _is_attacking := false
 var _wall_jumped := 0
 var wall_jump_max := 3 setget wall_jump_max_set
+var _is_attacking := false
 
 
 func _physics_process(delta):
@@ -19,6 +19,8 @@ func _physics_process(delta):
 		_movement()
 		if Input.is_action_just_pressed("jump"):
 			_jump()
+		if Input.is_action_just_pressed("attack"):
+			_attack()
 
 
 func _gravity(delta):
@@ -55,7 +57,7 @@ func wall_jump_max_set(new_value):
 
 
 func _attack():
-	if Input.is_action_just_pressed("attack"):
-		_velocity.x *= 2
-		
-
+	_is_attacking = true
+	_velocity.x += Input.get_axis("move_left", "move_right") * 1000
+	_velocity = move_and_slide(_velocity, Vector2.UP)
+	_is_attacking = false
