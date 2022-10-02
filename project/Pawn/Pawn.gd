@@ -30,8 +30,13 @@ func _gravity(delta):
 		_is_jumping = false
 	elif is_on_wall() and _velocity.y > 0 and Input.get_axis("move_left", "move_right") != 0:
 		_velocity.y += _SLIDESPEED * delta
+		$AnimatedSprite.play("slide")
+		if Input.get_axis("move_left", "move_right") < 0:
+			$AnimatedSprite.scale.x = -1
 	else:
 		_velocity.y += _GRAVITY * delta
+		$AnimatedSprite.scale.x = 1
+		$AnimatedSprite.play("idle")
 
 
 func _movement():
