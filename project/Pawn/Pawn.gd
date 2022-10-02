@@ -3,7 +3,7 @@ extends KinematicBody2D
 const _GRAVITY := 800
 const _MOVESPEED := 400
 const _JUMPSTRENGTH := 450
-const _SCRAMBLESTRENGTH := 300
+const _SCRAMBLESTRENGTH := 350
 const _SLIDESPEED := 200
 
 var _velocity := Vector2.ZERO
