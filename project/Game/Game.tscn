@@ -18,6 +18,8 @@ pause_mode = 2
 wait_time = 10.0
 autostart = true
 
-[node name="HUD" parent="." instance=ExtResource( 4 )]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource( 4 )]
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
