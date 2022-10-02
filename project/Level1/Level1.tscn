@@ -40,10 +40,6 @@ tile_data = PoolIntArray( -1572859, 0, 0, -1572858, 0, 0, -1572857, 0, 0, -15728
 [node name="Pawn" parent="." groups=["Persist"] instance=ExtResource( 1 )]
 position = Vector2( 34, 482 )
 
-[node name="PauseTimer" type="Timer" parent="."]
-wait_time = 10.0
-autostart = true
-
 [node name="JumpPowerUp" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1802, 459 )
 
